@@ -29,7 +29,7 @@ export default function ContactSection() {
 					{/* Contact Buttons */}
 					<div className="flex flex-col sm:flex-row justify-center gap-4">
 						<a
-							href="mailto:david@example.com"
+							href="mailto: kiranpatel5394@gmail.com"
 							className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-medium hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
 						>
 							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
