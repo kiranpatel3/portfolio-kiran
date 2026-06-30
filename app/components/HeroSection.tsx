@@ -1,127 +1,98 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+const skills = [
+	'React',
+	'TypeScript',
+	'Redux',
+	'Java',
+	'Spring Boot',
+	'AWS',
+	'Docker',
+	'CI/CD',
+];
+
+const experience = [
+	{ company: 'Freelance', role: 'Frontend Engineer', period: '2023 – present' },
+	{ company: 'USAA', role: 'Software Developer', period: '2021 – 2023' },
+	{ company: 'Discover', role: 'Software Developer', period: '2019 – 2021' },
+	{ company: 'T-Mobile', role: 'Software Developer', period: '2018 – 2019' },
+];
 
 export default function HeroSection() {
-	const [selectedStack, setSelectedStack] = useState<'frontend' | 'backend' | 'devops' | null>(null);
-
 	return (
-		<section className="min-h-screen relative overflow-hidden py-24 md:py-0">
-			<div className="absolute inset-0">
-				<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-			</div>
+		<section id="about" className="px-6 pb-20 pt-16 md:pt-24">
+			<div className="mx-auto max-w-3xl">
+				<p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">Software Engineer</p>
 
-			<div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-8 md:pt-0">
-				<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8 md:mb-12">
-					<div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
-						<h1 className="text-4xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
-							Kiran Patel
-						</h1>
-						<h2 className="text-2xl md:text-4xl font-bold text-white">Software Developer</h2>
-						<p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-						Full-stack developer skilled in Java, Spring Boot, and React with a strong focus on building scalable APIs and cloud-based solutions.
-						Experienced in CI/CD automation, Agile teams, and delivering high-quality software across backend and frontend.
+				<h1 className="font-display text-4xl leading-tight tracking-tight text-foreground md:text-6xl">
+					Hi, I&apos;m Kiran.
+				</h1>
+
+				<p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+					I&apos;ve spent the last five-plus years building web applications — mostly Java and Spring Boot on the
+					backend, React and TypeScript on the frontend, with a growing focus on performance, accessibility, and
+					AI-assisted development workflows.
+				</p>
+
+				<p className="mt-4 max-w-2xl leading-relaxed text-muted">
+					Since 2023 I&apos;ve been doing freelance frontend work while deepening my React and generative-AI
+					skills. Before that I was at USAA, Discover Financial Services, and T-Mobile, shipping APIs, improving
+					deployments, and working closely with frontend teams on integration and latency.
+				</p>
+
+				<p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
+					M.S. in Computer Science, Long Island University · AWS Certified Developer · Meta Front-End Developer
+					Certificate
+				</p>
+
+				<div className="mt-8 flex flex-wrap gap-2">
+					{skills.map((skill) => (
+						<span
+							key={skill}
+							className="rounded-md border border-border bg-surface px-3 py-1 text-sm text-foreground"
+						>
+							{skill}
+						</span>
+					))}
+				</div>
+
+				<div className="mt-12 border-t border-border pt-10">
+					<h2 className="mb-6 text-sm font-medium uppercase tracking-wide text-muted">Where I&apos;ve worked</h2>
+					<ul className="space-y-4">
+						{experience.map((job) => (
+							<li key={job.company} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+								<div>
+									<span className="font-medium text-foreground">{job.company}</span>
+									<span className="text-muted"> — {job.role}</span>
+								</div>
+								<span className="text-sm text-muted">{job.period}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div className="mt-12 grid gap-8 border-t border-border pt-10 md:grid-cols-3">
+					<div>
+						<h2 className="mb-2 text-sm font-medium uppercase tracking-wide text-muted">Frontend</h2>
+						<p className="text-sm leading-relaxed text-foreground">
+							React, Redux, TypeScript, responsive UI, and the performance and accessibility details that
+							keep apps usable on real devices.
 						</p>
-						{/* <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
-							Previously Software Developer at <span className="text-blue-400">USAA</span> and {' '}
-							<span className="text-purple-400">Discover Financial Services</span>
-						</p> */}
 					</div>
-					<div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8">
-						<span className="px-3 md:px-4 py-1.5 md:py-2 bg-blue-500/10 rounded-full text-blue-400 text-xs md:text-sm">Java</span>
-						<span className="px-3 md:px-4 py-1.5 md:py-2 bg-purple-500/10 rounded-full text-purple-400 text-xs md:text-sm">Spring Framework</span>
-						<span className="px-3 md:px-4 py-1.5 md:py-2 bg-teal-500/10 rounded-full text-teal-400 text-xs md:text-sm">SpringBoot</span>
-						<span className="px-3 md:px-4 py-1.5 md:py-2 bg-blue-500/10 rounded-full text-blue-400 text-xs md:text-sm">React</span>
-						<span className="px-3 md:px-4 py-1.5 md:py-2 bg-purple-500/10 rounded-full text-purple-400 text-xs md:text-sm">AWS</span>
+					<div>
+						<h2 className="mb-2 text-sm font-medium uppercase tracking-wide text-muted">Backend</h2>
+						<p className="text-sm leading-relaxed text-foreground">
+							Java, Spring Boot, REST APIs, MongoDB, and MySQL — the services and data layers behind the
+							interfaces.
+						</p>
 					</div>
-				</motion.div>
-
-				{/* Interactive System Architecture */}
-				<div className="w-full max-w-5xl mx-auto relative px-2 md:px-4">
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.3 }}
-						className="bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800 p-4 md:p-8"
-					>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-							{/* Frontend Layer */}
-							<div
-								className={`p-4 md:p-6 rounded-lg transition-colors border-2 ${
-									selectedStack === 'frontend' ? 'bg-blue-500/20 border-blue-500/50' : 'bg-gray-800/50 hover:bg-gray-800/80 border-transparent'
-								}`}
-								onMouseEnter={() => setSelectedStack('frontend')}
-								onMouseLeave={() => setSelectedStack(null)}
-							>
-								<h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-blue-400">Frontend Development</h3>
-								<ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-400">
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-										Modern React Architectures
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-										Performance Optimization
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-										Responsive & Interactive UIs
-									</li>
-								</ul>
-							</div>
-
-							{/* Backend Layer */}
-							<div
-								className={`p-4 md:p-6 rounded-lg transition-colors border-2 ${
-									selectedStack === 'backend' ? 'bg-purple-500/20 border-purple-500/50' : 'bg-gray-800/50 hover:bg-gray-800/80 border-transparent'
-								}`}
-								onMouseEnter={() => setSelectedStack('backend')}
-								onMouseLeave={() => setSelectedStack(null)}
-							>
-								<h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-purple-400">Backend Development</h3>
-								<ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-400">
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
-										API Design & Development
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
-										Database Architecture
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
-										Real-time Systems
-									</li>
-								</ul>
-							</div>
-
-							{/* DevOps Layer */}
-							<div
-								className={`p-4 md:p-6 rounded-lg transition-colors border-2 ${
-									selectedStack === 'devops' ? 'bg-teal-500/20 border-teal-500/50' : 'bg-gray-800/50 hover:bg-gray-800/80 border-transparent'
-								}`}
-								onMouseEnter={() => setSelectedStack('devops')}
-								onMouseLeave={() => setSelectedStack(null)}
-							>
-								<h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-teal-400">DevOps & Cloud</h3>
-								<ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-400">
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-teal-500 rounded-full" />
-										AWS Infrastructure
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-teal-500 rounded-full" />
-										CI/CD Pipelines
-									</li>
-									<li className="flex items-center gap-2">
-										<div className="w-1.5 h-1.5 bg-teal-500 rounded-full" />
-										Scalable Architecture
-									</li>
-								</ul>
-							</div>
-						</div>
-					</motion.div>
+					<div>
+						<h2 className="mb-2 text-sm font-medium uppercase tracking-wide text-muted">Ops &amp; tools</h2>
+						<p className="text-sm leading-relaxed text-foreground">
+							AWS, Docker, Jenkins, OpenShift, and Vercel. I also use Cursor and LLM workflows day to day
+							for prototyping, testing, and code review.
+						</p>
+					</div>
 				</div>
 			</div>
 		</section>

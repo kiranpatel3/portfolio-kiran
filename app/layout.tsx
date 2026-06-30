@@ -1,52 +1,48 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Newsreader, Figtree } from 'next/font/google';
+import { ThemeProvider } from './components/ThemeProvider';
 import './globals.css';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
+const newsreader = Newsreader({
+	variable: '--font-display',
 	subsets: ['latin'],
+	display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
+const figtree = Figtree({
+	variable: '--font-body',
 	subsets: ['latin'],
+	display: 'swap',
 });
 
 export const metadata: Metadata = {
-	title: 'Kiran Patel - Software Developer',
+	title: 'Kiran Patel — Software Engineer',
 	description:
-		'Welcome to my portfolio! I am a passionate full-stack developer who bridges the gap between frontend and backend development. Specializing in creating complete web solutions, from beautiful user interfaces to robust server architectures.',
+		'Software engineer with 5+ years of experience building scalable web applications. React, TypeScript, Java, Spring Boot, and AWS — based in the NY metro area.',
 	keywords: [
-		'Full-Stack Developer',
-		'Software Engineer',
-		'Frontend Development',
-		'Backend Development',
-		'React',
-		'Next.js',
-		'Node.js',
-		'TypeScript',
-		'Database Design',
-		'API Development',
-		'Cloud Solutions',
-		'DevOps',
-		'System Architecture',
-		'Web Development',
 		'Kiran Patel',
+		'Software Engineer',
+		'React',
+		'TypeScript',
+		'Java',
+		'Spring Boot',
+		'AWS',
+		'Full-Stack Developer',
 	],
 	authors: [{ name: 'Kiran Patel' }],
 	creator: 'Kiran Patel',
 	openGraph: {
-		title: 'Kiran Patel - Software Developer Portfolio',
+		title: 'Kiran Patel — Software Engineer',
 		description:
-			'Passionate full-stack developer creating complete web solutions. Explore my projects and technical expertise across the entire development stack.',
-		url: 'https://your-domain.com',
-		siteName: 'Kiran Patel - Portfolio',
+			'Software engineer with 5+ years of experience building scalable web applications. React, TypeScript, Java, Spring Boot, and AWS.',
+		url: 'https://patelkiran.dev',
+		siteName: 'Kiran Patel',
 		images: [
 			{
 				url: '/og-image.jpg',
 				width: 1200,
 				height: 630,
-				alt: 'Kiran Patel - Software Developer Portfolio',
+				alt: 'Kiran Patel — Software Engineer',
 			},
 		],
 		locale: 'en_US',
@@ -54,24 +50,27 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Kiran Patel - Software Developer',
+		title: 'Kiran Patel — Software Engineer',
 		description:
-			'Passionate full-stack developer creating complete web solutions. Explore my projects and technical expertise across the entire development stack.',
+			'Software engineer with 5+ years of experience building scalable web applications. React, TypeScript, Java, Spring Boot, and AWS.',
 		creator: '@yourusername',
 		images: ['/og-image.jpg'],
 	},
 	robots: {
 		index: true,
 		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			'max-video-preview': -1,
-			'max-image-preview': 'large',
-			'max-snippet': -1,
-		},
 	},
 };
+
+const themeScript = `
+(function () {
+	try {
+		var theme = localStorage.getItem('theme') || 'system';
+		var dark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		if (dark) document.documentElement.classList.add('dark');
+	} catch (e) {}
+})();
+`;
 
 export default function RootLayout({
 	children,
@@ -79,8 +78,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
+			</head>
+			<body className={`${newsreader.variable} ${figtree.variable}`}>
+				<ThemeProvider>{children}</ThemeProvider>
+			</body>
 		</html>
 	);
 }

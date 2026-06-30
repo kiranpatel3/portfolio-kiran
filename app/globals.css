@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	background-color: #000;
+:root {
+	--background: #f7f5f2;
+	--foreground: #1f1d1a;
+	--muted: #6b6560;
+	--border: #e4dfd8;
+	--surface: #ffffff;
+	--accent: #2d6a4f;
+	--accent-foreground: #f7f5f2;
+	--accent-muted: #d8e8df;
+}
+
+.dark {
+	--background: #181715;
+	--foreground: #ece8e2;
+	--muted: #a39e97;
+	--border: #2e2b28;
+	--surface: #211f1c;
+	--accent: #52b788;
+	--accent-foreground: #181715;
+	--accent-muted: #1e3328;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-background text-foreground font-sans antialiased;
+	}
+
+	::selection {
+		background-color: var(--accent-muted);
+		color: var(--foreground);
+	}
 }
